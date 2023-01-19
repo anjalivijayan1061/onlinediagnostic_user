@@ -29,7 +29,7 @@ class MemberlocationScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                  labelText: "Place",
+                  labelText: "Place -",
                 ),
               ),
             ),
@@ -37,7 +37,7 @@ class MemberlocationScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                  labelText: "City",
+                  labelText: "City -",
                 ),
               ),
             ),
@@ -45,12 +45,20 @@ class MemberlocationScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                  labelText: "Pin",
+                  labelText: "Pin -",
                 ),
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Landmark -",
+                ),
+              ),
+            ),
+            const Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Text('Select your live location -'),
             ),
             Padding(

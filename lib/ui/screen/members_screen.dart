@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 
 class MembersScreen extends StatelessWidget {
   const MembersScreen({super.key});
@@ -20,6 +21,7 @@ class MembersScreen extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           CustomCard(
             title: 'John',
@@ -36,13 +38,10 @@ class MembersScreen extends StatelessWidget {
           CustomCard(
             title: 'Joseph',
           ),
-          ElevatedButton(
-            child: const Text('+  New Member'),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue[400],
-            ),
-          ),
+          CustomButton(
+            label: '+ New Member',
+            size: 108,
+          )
         ],
       ),
     );

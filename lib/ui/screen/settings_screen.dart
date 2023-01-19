@@ -25,6 +25,14 @@ class SettingsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "Search for a setting.... ",
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(

@@ -26,22 +26,122 @@ class MembercreationScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              TextField(
-                decoration: InputDecoration(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Name -"),
+                ),
               ),
-              TextField(
-                decoration: InputDecoration(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Age -"),
+                ),
               ),
               CustomButton(label: 'Location'),
-              CustomButton(label: 'Gender', color: Colors.black),
-              TextField(
-                decoration: InputDecoration(),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Material(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                    side: BorderSide(
+                      color: Colors.black26,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Gender",
+                            style:
+                                Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      color: Colors.black54,
+                                    ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              value: false,
+                              groupValue: 'gender',
+                              onChanged: (vslue) {},
+                            ),
+                            Text(
+                              "Male",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: Colors.black54,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              value: false,
+                              groupValue: 'gender',
+                              onChanged: (vslue) {},
+                            ),
+                            Text(
+                              "Female",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: Colors.black54,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              value: false,
+                              groupValue: 'gender',
+                              onChanged: (vslue) {},
+                            ),
+                            Text(
+                              "Others",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: Colors.black54,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              ElevatedButton(
-                child: const Text('Continue'),
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue[400],
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Email ID-"),
+                ),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: SizedBox(
+                      width: 150,
+                      child: CustomButton(
+                        label: "Continue",
+                        filled: true,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
