@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class TeststatusScreen extends StatelessWidget {
-  const TeststatusScreen({super.key});
+class MembersScreen extends StatelessWidget {
+  const MembersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class TeststatusScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         title: const Text(
-          "10/03/2023",
+          "Members",
           style: TextStyle(
             color: Colors.black,
           ),
@@ -20,16 +22,22 @@ class TeststatusScreen extends StatelessWidget {
       body: Column(
         children: [
           CustomCard(
-            title: 'Haemoglobin',
+            title: 'John',
           ),
           CustomCard(
-            title: 'Haemoglobin',
+            title: 'Rani',
           ),
           CustomCard(
-            title: 'Haemoglobin',
+            title: 'Lena',
+          ),
+          CustomCard(
+            title: 'Roshan',
+          ),
+          CustomCard(
+            title: 'Joseph',
           ),
           ElevatedButton(
-            child: const Text('Pay Now'),
+            child: const Text('+  New Member'),
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               primary: Colors.blue[400],
@@ -73,16 +81,12 @@ class CustomCard extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Sample-Blood"),
-                      ),
                       Row(
                         children: [
-                          Text("Collected From-Home"),
+                          Text("32"),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Rs-500"),
+                            child: Text("Male"),
                           ),
                         ],
                       ),

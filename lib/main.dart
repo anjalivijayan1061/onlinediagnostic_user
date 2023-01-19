@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/verifyotp_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/membercreation_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/memberlocation_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/members_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/settings_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/appointment_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/teststatus_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/splash_screen.dart';
 
@@ -18,9 +24,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const TeststatusScreen(),
+          primarySwatch: Colors.blue,
+          inputDecorationTheme: const InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.zero,
+              borderSide: BorderSide(color: Colors.black12),
+            ),
+          )),
+      home: const SettingsScreen(),
     );
   }
 }
