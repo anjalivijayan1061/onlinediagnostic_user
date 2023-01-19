@@ -7,11 +7,12 @@ import 'package:onlinediagnostic_user/ui/screen/membercreation_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/memberlocation_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/about_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/suggestion_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/members_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/settings_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/appointment_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/teststatus_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/splash_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/complaints_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide(color: Colors.black12),
             ),
           )),
-      home: const MembercreationScreen(),
+      home: const SuggestionScreen(),
     );
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 
-class ComplaintsScreen extends StatelessWidget {
-  const ComplaintsScreen({super.key});
+class SuggestionScreen extends StatelessWidget {
+  const SuggestionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,15 @@ class ComplaintsScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 70,
+            height: 30,
+          ),
+          Text('What could be improved ?'),
+          SizedBox(
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomButton(label: 'Type Something'),
+            child: CustomButton(label: 'Type your suggestions here'),
           ),
           Expanded(
             child: Align(
@@ -41,7 +45,7 @@ class ComplaintsScreen extends StatelessWidget {
             ),
           ),
           CustomButton(
-            label: "Submit",
+            label: "Post",
             filled: true,
           ),
         ],

@@ -12,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         title: const Text(
-          "Member Location",
+          "Settings",
           style: TextStyle(
             color: Colors.black,
           ),
@@ -24,53 +24,66 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                  labelText: "Search for a setting.... ",
-                ),
+                    labelText: "Search for a setting.... ",
+                    prefixIcon: Icon(
+                      Icons.search,
+                    )),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Profile',
-                textAlign: TextAlign.start,
-              ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print('tap');
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Divider(),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Notification'),
+            ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text('Notification'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print('tap');
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print('tap');
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Divider(),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('About'),
+            ListTile(
+              leading: Icon(Icons.error),
+              title: Text('Complaints'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print('tap');
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Divider(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Complaints'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Divider(),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Suggestions'),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.light_mode_sharp),
+              title: Text('Suggestion'),
+              trailing: Icon(Icons.arrow_right),
+              onTap: () {
+                print('tap');
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
