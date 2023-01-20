@@ -23,13 +23,27 @@ class NotificationScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              'You have 2 notifications today',
-              style: TextStyle(
-                fontSize: 20,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Wrap(
+              children: [
+                Text(
+                  'You have ',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  '2 notifications',
+                  style: TextStyle(fontSize: 20, color: Colors.blue),
+                ),
+                Text(
+                  ' today',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
@@ -44,10 +58,14 @@ class NotificationScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.circle),
+                Icon(
+                  Icons.circle,
+                  size: 15,
+                  color: Colors.red[800],
+                ),
                 Text(
-                  'you have successfully changed your phone number',
-                  style: TextStyle(fontSize: 20),
+                  '  you have successfully changed your phone number',
+                  style: TextStyle(fontSize: 18),
                 ),
               ],
             ),
@@ -60,10 +78,14 @@ class NotificationScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Icon(Icons.circle),
+                Icon(
+                  Icons.circle,
+                  size: 15,
+                  color: Colors.red[800],
+                ),
                 Text(
-                  'Sample collected successfully',
-                  style: TextStyle(fontSize: 20),
+                  '  Sample collected successfully',
+                  style: TextStyle(fontSize: 18),
                 ),
               ],
             ),
@@ -82,10 +104,11 @@ class NotificationScreen extends StatelessWidget {
               children: [
                 Icon(
                   Icons.circle,
+                  size: 15,
                   color: Colors.black26,
                 ),
-                Text('test request is on process',
-                    style: TextStyle(fontSize: 20, color: Colors.black38)),
+                Text('  test request is on process',
+                    style: TextStyle(fontSize: 18, color: Colors.black38)),
               ],
             ),
           ),

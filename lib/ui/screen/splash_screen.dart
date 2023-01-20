@@ -5,45 +5,28 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
-    body:
-    Padding(
-      padding: const EdgeInsets.all(40.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: Stack(
         children: [
-          Expanded(
-              child: Center(
-                  child: Container(
-            height: 100,
-            width: 100,
-            color: Colors.green,
-          ))),
-          Text(
-            "Sign In",
-            style: Theme.of(context).textTheme.headlineSmall,
+          Image.network(
+            "https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
+            fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
           ),
-          SizedBox(
-            height: 10,
+          Material(
+            color: Colors.black38,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+            ),
           ),
-          Text(
-            "Enter your phone number to continue",
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 100,
-            width: 100,
-            color: Colors.amber[600],
-          ),
-          Text(
-            "By signing in you agree to our terms and conditions and private policy",
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          SizedBox(
-            height: 10,
+          Center(
+            child: Icon(
+              Icons.ac_unit,
+              color: Colors.white,
+              size: 100,
+            ),
           ),
         ],
       ),

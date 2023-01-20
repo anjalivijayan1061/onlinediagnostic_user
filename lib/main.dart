@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/splash_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/verifyotp_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide(color: Colors.black12),
             ),
           )),
-      home: const ReportScreen(),
+      home: const SigninScreen(),
     );
   }
 }
