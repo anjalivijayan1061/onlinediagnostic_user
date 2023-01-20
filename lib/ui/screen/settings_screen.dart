@@ -29,10 +29,11 @@ class SettingsScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(
-                    labelText: "Search for a setting.... ",
-                    prefixIcon: Icon(
-                      Icons.search,
-                    )),
+                  labelText: "Search for a setting.... ",
+                  prefixIcon: Icon(
+                    Icons.search,
+                  ),
+                ),
               ),
             ),
             ListTile(

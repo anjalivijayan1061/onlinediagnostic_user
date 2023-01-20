@@ -6,6 +6,8 @@ import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/membercreation_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/memberlocation_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/report_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/about_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/suggestion_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/members_screen.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide(color: Colors.black12),
             ),
           )),
-      home: const SuggestionScreen(),
+      home: const ReportScreen(),
     );
   }
 }

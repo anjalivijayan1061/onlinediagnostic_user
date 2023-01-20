@@ -42,9 +42,14 @@ class NotificationScreen extends StatelessWidget {
           Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'you have successfully changed your phone number',
-              style: TextStyle(fontSize: 20),
+            child: Row(
+              children: [
+                Icon(Icons.circle),
+                Text(
+                  'you have successfully changed your phone number',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -53,9 +58,14 @@ class NotificationScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Sample collected successfully',
-              style: TextStyle(fontSize: 20),
+            child: Row(
+              children: [
+                Icon(Icons.circle),
+                Text(
+                  'Sample collected successfully',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
           ),
           Divider(),
@@ -68,8 +78,16 @@ class NotificationScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('test request is on process',
-                style: TextStyle(fontSize: 20, color: Colors.black38)),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  color: Colors.black26,
+                ),
+                Text('test request is on process',
+                    style: TextStyle(fontSize: 20, color: Colors.black38)),
+              ],
+            ),
           ),
           SizedBox(
             height: 80,

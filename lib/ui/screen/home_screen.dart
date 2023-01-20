@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -52,12 +54,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 class TestCard extends StatelessWidget {
+  final bool isActive;
   final String date, status;
 
   const TestCard({
     Key? key,
     required this.date,
     required this.status,
+    this.isActive = true,
   }) : super(key: key);
 
   @override
@@ -126,22 +130,31 @@ class TestCard extends StatelessWidget {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Total-550',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 15, color: Colors.red[600])),
-              ),
+              isActive
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Total-550',
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              TextStyle(fontSize: 15, color: Colors.red[600])),
+                    )
+                  : SizedBox(),
               Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Icon(
+                    Icons.document_scanner,
+                    color: Colors.blue[400],
+                  ),
                   Text(
                     'View Document',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 15, color: Colors.blue[300]),
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
                   ),
                   ElevatedButton(
                     child: const Text('Details'),
