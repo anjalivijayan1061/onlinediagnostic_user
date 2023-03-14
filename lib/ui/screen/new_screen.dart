@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
 class NewScreen extends StatelessWidget {
   const NewScreen({super.key});

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
 class ComplaintsScreen extends StatelessWidget {
   const ComplaintsScreen({super.key});
@@ -12,22 +10,21 @@ class ComplaintsScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: Row(
-          children: [
-            const Icon(
-              Icons.arrow_back,
-              color: Colors.black26,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Complaints",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: const Text(
+          "Complaints",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+          textAlign: TextAlign.left,
         ),
         backgroundColor: Colors.white,
       ),
@@ -38,7 +35,11 @@ class ComplaintsScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomButton(label: 'Type Something'),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: "Type Something. ",
+              ),
+            ),
           ),
           Expanded(
             child: Align(

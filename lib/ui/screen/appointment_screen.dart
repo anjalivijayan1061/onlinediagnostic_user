@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});

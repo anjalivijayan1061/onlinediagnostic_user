@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
 class SuggestionScreen extends StatelessWidget {
   const SuggestionScreen({super.key});
@@ -12,19 +10,20 @@ class SuggestionScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: Row(
-          children: [
-            const Icon(Icons.arrow_back, color: Colors.black26),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Suggestion",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
+        title: const Text(
+          "Suggestion",
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
         backgroundColor: Colors.white,
       ),
@@ -39,7 +38,11 @@ class SuggestionScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomButton(label: 'Type your suggestions here'),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: "Type your suggestions here ",
+              ),
+            ),
           ),
           Expanded(
             child: Align(

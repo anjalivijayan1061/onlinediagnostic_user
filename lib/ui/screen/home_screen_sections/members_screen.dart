@@ -1,60 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:onlinediagnostic_user/ui/screen/membercreation_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
 class MembersScreen extends StatelessWidget {
   const MembersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 1,
-        title: Row(
-          children: [
-            const Icon(
-              Icons.arrow_back,
-              color: Colors.black26,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Members",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const CustomCard(
+          title: 'John',
         ),
-        backgroundColor: Colors.white,
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          CustomCard(
-            title: 'John',
-          ),
-          CustomCard(
-            title: 'Rani',
-          ),
-          CustomCard(
-            title: 'Lena',
-          ),
-          CustomCard(
-            title: 'Roshan',
-          ),
-          CustomCard(
-            title: 'Joseph',
-          ),
-          CustomButton(
-            label: '+ New Member',
-            size: 108,
-          )
-        ],
-      ),
+        const CustomCard(
+          title: 'Rani',
+        ),
+        const CustomCard(
+          title: 'Lena',
+        ),
+        const CustomCard(
+          title: 'Roshan',
+        ),
+        const CustomCard(
+          title: 'Joseph',
+        ),
+        CustomButton(
+          label: 'New Member',
+          iconData: Icons.add,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MembercreationScreen(),
+              ),
+            );
+          },
+        )
+      ],
     );
   }
 }
