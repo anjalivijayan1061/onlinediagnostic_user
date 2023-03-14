@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/splash_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/verifyotp_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/home_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/membercreation_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/memberlocation_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/report_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/about_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/suggestion_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/members_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/settings_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/appointment_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/teststatus_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/complaints_screen.dart';
+
+import 'ui/screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,16 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue,
-          inputDecorationTheme: const InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.zero,
-              borderSide: BorderSide(color: Colors.black12),
-            ),
-          )),
-      home: const SigninScreen(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.zero,
+                borderSide: BorderSide(color: Colors.black12),
+              ),
+            )),
+        home: const HomeScreen());
   }
 }

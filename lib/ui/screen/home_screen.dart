@@ -20,11 +20,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               "Hi Person,",
               style: TextStyle(fontSize: 23),
@@ -38,12 +38,12 @@ class HomeScreen extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          TestCard(
+          const TestCard(
             date: '12/12/1212',
-            status: 'Accepted',
+            status: 'Pending',
           ),
         ],
       ),
@@ -68,7 +68,7 @@ class TestCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Material(
         color: Colors.white,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           side: BorderSide(
             color: Colors.black26,
             width: 1,
@@ -87,13 +87,18 @@ class TestCard extends StatelessWidget {
                   ),
                   Text(
                     status,
-                    style: TextStyle(color: Colors.green),
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: status.toLowerCase() == 'accepted'
+                              ? Colors.green
+                              : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),
-              Divider(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Divider(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Test 1',
                   textAlign: TextAlign.center,
@@ -101,8 +106,8 @@ class TestCard extends StatelessWidget {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Test 2',
                   textAlign: TextAlign.center,
@@ -110,8 +115,8 @@ class TestCard extends StatelessWidget {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Test 3',
                   textAlign: TextAlign.center,
@@ -119,8 +124,8 @@ class TestCard extends StatelessWidget {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   '3 more test ',
                   textAlign: TextAlign.center,
@@ -137,8 +142,138 @@ class TestCard extends StatelessWidget {
                           style:
                               TextStyle(fontSize: 15, color: Colors.red[600])),
                     )
-                  : SizedBox(),
-              Divider(),
+                  : const SizedBox(),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.document_scanner,
+                          color: Colors.blue[400],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'View Document',
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue[400],
+                    ),
+                    child: const Text('Details'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TestCard1 extends StatelessWidget {
+  final bool isActive;
+  final String date, status;
+
+  const TestCard1({
+    Key? key,
+    required this.date,
+    required this.status,
+    this.isActive = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Material(
+        color: Colors.white,
+        shape: const RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.black26,
+            width: 1,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    date,
+                  ),
+                  Text(
+                    status,
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ],
+              ),
+              const Divider(),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Test 1',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Test 2',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Test 3',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  '3 more test ',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              isActive
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Total-550',
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              TextStyle(fontSize: 15, color: Colors.red[600])),
+                    )
+                  : const SizedBox(),
+              const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -146,7 +281,7 @@ class TestCard extends StatelessWidget {
                     Icons.document_scanner,
                     color: Colors.blue[400],
                   ),
-                  Text(
+                  const Text(
                     'View Document',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,

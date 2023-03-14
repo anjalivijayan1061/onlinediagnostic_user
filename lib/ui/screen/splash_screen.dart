@@ -21,12 +21,21 @@ class SplashScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
             ),
           ),
-          Center(
-            child: Icon(
-              Icons.ac_unit,
-              color: Colors.white,
-              size: 100,
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Icon(
+                  Icons.ac_unit,
+                  color: Colors.white,
+                  size: 100,
+                ),
+              ),
+              Text(
+                "Online DIagnostic",
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ],
           ),
         ],
       ),

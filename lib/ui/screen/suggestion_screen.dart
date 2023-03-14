@@ -12,11 +12,19 @@ class SuggestionScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: const Text(
-          "Complaints",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            const Icon(Icons.arrow_back, color: Colors.black26),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Suggestion",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),

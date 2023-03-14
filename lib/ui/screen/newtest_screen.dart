@@ -14,11 +14,22 @@ class NewtestScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: const Text(
-          "New Test Request",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            const Icon(
+              Icons.arrow_back,
+              color: Colors.black26,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "New Test Request",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),
@@ -34,14 +45,23 @@ class NewtestScreen extends StatelessWidget {
             CustomButton(
               label: 'Upload Document',
             ),
-            CustomCard(
+            CustomCards(
               title: 'Haemoglobin',
+              sample: "Sample-Blood",
+              collectedfrom: "Collected From-Home",
+              rs: "Rs-500",
             ),
-            CustomCard(
+            CustomCards(
               title: 'Haemoglobin',
+              sample: "Sample-Blood",
+              collectedfrom: "Collected From-Home",
+              rs: "Rs-500",
             ),
-            CustomCard(
+            CustomCards(
               title: 'Haemoglobin',
+              sample: "Sample-Blood",
+              collectedfrom: "Collected From-Home",
+              rs: "Rs-500",
             ),
             Row(
               children: [
@@ -98,17 +118,91 @@ class NewtestScreen extends StatelessWidget {
   }
 }
 
+class CustomCards extends StatelessWidget {
+  final String title, sample, collectedfrom, rs;
+  const CustomCards({
+    Key? key,
+    required this.title,
+    required this.sample,
+    required this.collectedfrom,
+    required this.rs,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Material(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Colors.black26,
+                width: 1,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          Text(title),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Icon(Icons.check_circle_outline),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(sample),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(collectedfrom),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(rs),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class CustomButton extends StatelessWidget {
   final String label;
   final Color color;
   final bool filled;
   final double size;
+  final IconData? iconData;
+  final Function()? onPressed;
   const CustomButton({
     Key? key,
     required this.label,
     this.color = Colors.blue,
     this.size = double.infinity,
     this.filled = false,
+    this.iconData,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -122,16 +216,30 @@ class CustomButton extends StatelessWidget {
           color: filled ? color : null,
           border: Border.all(color: color),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Center(
-            child: Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: filled ? Colors.white : color,
-                fontWeight: FontWeight.w600,
-              ),
+        child: InkWell(
+          onTap: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: iconData != null
+                  ? MainAxisAlignment.spaceBetween
+                  : MainAxisAlignment.center,
+              children: [
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: filled ? Colors.white : color,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                iconData != null
+                    ? Icon(
+                        iconData,
+                        color: filled ? Colors.white : color,
+                      )
+                    : const SizedBox(),
+              ],
             ),
           ),
         ),

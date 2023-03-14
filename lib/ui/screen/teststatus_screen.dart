@@ -18,15 +18,28 @@ class TeststatusScreen extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CustomCard(
             title: 'Haemoglobin',
+            sample: "Sample-Blood",
+            collectedfrom: "Collected From-Home",
+            rs: "Rs-500",
+            status: "Pending",
           ),
           CustomCard(
             title: 'Haemoglobin',
+            sample: "Sample-Blood",
+            collectedfrom: "Collected From-Home",
+            rs: "Rs-500",
+            status: "Testing",
           ),
           CustomCard(
             title: 'Haemoglobin',
+            sample: "Sample-Blood",
+            collectedfrom: "Collected From-Home",
+            rs: "Rs-500",
+            status: "Done",
           ),
           ElevatedButton(
             child: const Text('Pay Now'),
@@ -42,10 +55,14 @@ class TeststatusScreen extends StatelessWidget {
 }
 
 class CustomCard extends StatelessWidget {
-  final String title;
+  final String title, sample, collectedfrom, rs, status;
   const CustomCard({
     Key? key,
     required this.title,
+    required this.sample,
+    required this.collectedfrom,
+    required this.rs,
+    required this.status,
   }) : super(key: key);
 
   @override
@@ -68,21 +85,34 @@ class CustomCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(title),
+                      Row(
+                        children: [
+                          Text(title),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Text(
+                            status,
+                            textAlign: TextAlign.end,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("Sample-Blood"),
+                        child: Text(sample),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Collected From-Home"),
+                          Text(collectedfrom),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("Rs-500"),
+                            child: Text(rs),
                           ),
                         ],
                       ),

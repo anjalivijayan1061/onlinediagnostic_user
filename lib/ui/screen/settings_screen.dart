@@ -11,11 +11,22 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: const Text(
-          "Settings",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            const Icon(
+              Icons.arrow_back,
+              color: Colors.black26,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Settings",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),

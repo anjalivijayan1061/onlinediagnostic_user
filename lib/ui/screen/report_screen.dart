@@ -12,11 +12,22 @@ class ReportScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: const Text(
-          "Reports",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black26,
+              ),
+            ),
+            Text(
+              "Reports",
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.white,
       ),
