@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 
 import 'ui/screen/home_screen_sections/home_screen.dart';
 
@@ -23,6 +24,6 @@ class MyApp extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.black12),
               ),
             )),
-        home: const HomeScreen());
+        home: const NewtestScreen());
   }
 }

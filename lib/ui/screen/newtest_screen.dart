@@ -38,25 +38,28 @@ class NewtestScreen extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             CustomButton(
-              label: 'Upload Document',
+              label: 'Select',
             ),
-            CustomCard(
+            CustomCard1(
               title: 'Haemoglobin',
               sample: "Sample-Blood",
               collectedfrom: "Collected From-Home",
               rs: "Rs-500",
+              testduration: "Test Duration- 1 hr",
             ),
-            CustomCard(
+            CustomCard1(
               title: 'Haemoglobin',
               sample: "Sample-Blood",
               collectedfrom: "Collected From-Home",
               rs: "Rs-500",
+              testduration: "Test Duration- 1 hr",
             ),
-            CustomCard(
+            CustomCard1(
               title: 'Haemoglobin',
               sample: "Sample-Blood",
               collectedfrom: "Collected From-Home",
               rs: "Rs-500",
+              testduration: "Test Duration- 1 hr",
             ),
             Row(
               children: [
@@ -109,6 +112,80 @@ class NewtestScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomCard1 extends StatelessWidget {
+  final String title, sample, collectedfrom, rs, testduration;
+  const CustomCard1({
+    Key? key,
+    required this.title,
+    required this.sample,
+    required this.collectedfrom,
+    required this.rs,
+    required this.testduration,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: Material(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Colors.black26,
+                width: 1,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          Text(title),
+                          SizedBox(
+                            width: 100,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(sample),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            collectedfrom,
+                            textAlign: TextAlign.end,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(rs),
+                          ),
+                        ],
+                      ),
+                      Text(testduration)
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
