@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:onlinediagnostic_user/ui/screen/about_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/complaints_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/suggestion_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool signOut = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,17 +25,6 @@ class SettingsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "Search for a setting.... ",
-                prefixIcon: Icon(
-                  Icons.search,
-                ),
-              ),
-            ),
-          ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
@@ -79,7 +74,9 @@ class SettingsScreen extends StatelessWidget {
             child: Divider(),
           ),
           ListTile(
-            leading: const Icon(Icons.error),
+            leading: const Icon(
+              Icons.dangerous,
+            ),
             title: const Text('Complaints'),
             trailing: const Icon(Icons.arrow_right),
             onTap: () {
@@ -105,9 +102,23 @@ class SettingsScreen extends StatelessWidget {
               );
             },
           ),
-          const Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Divider(),
+          const Divider(),
+          CustomButton(
+            label: signOut ? 'Signingout...' : 'Signout',
+            onPressed: () async {
+              signOut = true;
+              setState(() {});
+              await Supabase.instance.client.auth.signOut();
+              signOut = false;
+              setState(() {});
+
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => const SigninScreen(),
+                ),
+                (route) => true,
+              );
+            },
           ),
         ],
       ),

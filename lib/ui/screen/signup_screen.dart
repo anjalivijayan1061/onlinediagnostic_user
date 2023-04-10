@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:onlinediagnostic_user/ui/screen/signup_screen.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isObscure = true;
@@ -36,6 +36,23 @@ class _SigninScreenState extends State<SigninScreen> {
               width: MediaQuery.of(context).size.width,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 30,
+              left: 10,
+            ),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Material(
@@ -53,7 +70,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Sign In',
+                        'Sign Up',
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
@@ -65,11 +82,32 @@ class _SigninScreenState extends State<SigninScreen> {
                         height: 5,
                       ),
                       Text(
-                        'Enter your email and password to continue ',
+                        'Enter your phone number, email and password to continue ',
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                             ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        controller: phoneNumberController,
+                        keyboardType: TextInputType.phone,
+                        validator: (value) {
+                          if (value!.trim().isNotEmpty && value.length == 10) {
+                            return null;
+                          } else {
+                            return 'Enter a valid phone number';
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          prefixText: '+91 ',
+                          labelText: "Phone",
+                          prefixIcon: Icon(
+                            Icons.phone_android_outlined,
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
@@ -126,23 +164,10 @@ class _SigninScreenState extends State<SigninScreen> {
                         height: 20,
                       ),
                       CustomButton(
-                        label: 'Signin',
+                        label: 'Signup',
                         filled: true,
                         onPressed: () {
                           if (formKey.currentState!.validate()) {}
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomButton(
-                        label: 'Signup',
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ),
-                          );
                         },
                       ),
                       const SizedBox(
@@ -150,7 +175,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                       Center(
                         child: Text(
-                          'By signing in you agree to our terms and conditions and privacy policy',
+                          'By signing up you agree to our terms and conditions and privacy policy',
                           style:
                               Theme.of(context).textTheme.labelLarge!.copyWith(
                                     color: Colors.black87,

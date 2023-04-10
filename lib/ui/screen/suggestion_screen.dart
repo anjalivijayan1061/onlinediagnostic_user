@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:onlinediagnostic_user/ui/widget/complaints/complaint_card.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
+import 'package:onlinediagnostic_user/ui/widget/suggestions/add_suggestion_dialog.dart';
+import 'package:onlinediagnostic_user/ui/widget/suggestions/suggestion_card.dart';
 
 class SuggestionScreen extends StatelessWidget {
   const SuggestionScreen({super.key});
@@ -26,38 +29,37 @@ class SuggestionScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 20,
+            ),
+            child: IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AddSuggestionDialog(),
+                );
+              },
+              icon: const Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+        ],
       ),
       body: Column(
-        children: [
+        children: const [
           SizedBox(
-            height: 30,
-          ),
-          Text('What could be improved ?'),
-          SizedBox(
-            height: 30,
+            height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "Type your suggestions here ",
-              ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
             ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: SizedBox(
-                  width: 150,
-                ),
-              ),
-            ),
-          ),
-          CustomButton(
-            label: "Post",
-            filled: true,
+            child: SuggestionCard(),
           ),
         ],
       ),
