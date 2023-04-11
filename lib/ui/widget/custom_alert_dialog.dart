@@ -52,15 +52,15 @@ class CustomAlertDialog extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.close,
-                          color: Colors.black26,
-                        ),
-                      ),
+                      // IconButton(
+                      //   onPressed: () {
+                      //     Navigator.pop(context);
+                      //   },
+                      //   icon: const Icon(
+                      //     Icons.close,
+                      //     color: Colors.black26,
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(height: 5),

@@ -18,19 +18,8 @@ class _TestScreenState extends State<TestScreen> {
         children: [
           Expanded(
             child: ListView(
+              shrinkWrap: true,
               children: const [
-                TestCard(
-                  date: '12/12/1212',
-                  status: 'Pending',
-                ),
-                TestCard(
-                  date: '12/12/1212',
-                  status: 'Pending',
-                ),
-                TestCard(
-                  date: '12/12/1212',
-                  status: 'Pending',
-                ),
                 TestCard(
                   date: '12/12/1212',
                   status: 'Pending',

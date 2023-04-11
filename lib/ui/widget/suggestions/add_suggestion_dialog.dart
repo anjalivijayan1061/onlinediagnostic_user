@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
-import 'package:onlinediagnostic_user/ui/widget/test_selector.dart';
 
 class AddSuggestionDialog extends StatelessWidget {
   const AddSuggestionDialog({

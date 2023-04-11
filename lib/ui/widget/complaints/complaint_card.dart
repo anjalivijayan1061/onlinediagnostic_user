@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_icon_button.dart';
 
 class ComplaintCard extends StatelessWidget {
   const ComplaintCard({
@@ -33,7 +34,7 @@ class ComplaintCard extends StatelessWidget {
                         color: Colors.black,
                       ),
                 ),
-                GestureDetector(
+                CustomIconButton(
                   onTap: () {
                     showDialog(
                       context: context,
@@ -43,13 +44,13 @@ class ComplaintCard extends StatelessWidget {
                             'Are you sure you want to delete this complaint? This action cannot be undone',
                         primaryButtonLabel: 'Delete',
                         primaryOnPressed: () {},
+                        secondaryButtonLabel: 'Cancel',
+                        secondaryOnPressed: () => Navigator.pop(context),
                       ),
                     );
                   },
-                  child: const Icon(
-                    Icons.delete_forever_outlined,
-                    color: Colors.red,
-                  ),
+                  icon: Icons.delete_forever_outlined,
+                  iconColor: Colors.red,
                 ),
               ],
             ),

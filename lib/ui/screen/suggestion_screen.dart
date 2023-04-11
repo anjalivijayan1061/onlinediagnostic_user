@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:onlinediagnostic_user/ui/widget/complaints/complaint_card.dart';
-import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 import 'package:onlinediagnostic_user/ui/widget/suggestions/add_suggestion_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/suggestions/suggestion_card.dart';
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -36,7 +34,7 @@ class NotificationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Wrap(
-              children: [
+              children: const [
                 Text(
                   'You have ',
                   style: TextStyle(
@@ -56,14 +54,14 @@ class NotificationScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               'Today',
               style: TextStyle(fontSize: 30),
             ),
           ),
-          Divider(),
+          const Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -73,14 +71,14 @@ class NotificationScreen extends StatelessWidget {
                   size: 15,
                   color: Colors.red[800],
                 ),
-                Text(
-                  '  you have successfully changed your phone number',
-                  style: TextStyle(fontSize: 18),
+                const Text(
+                  '  you have successfully',
+                  style: TextStyle(fontSize: 10),
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
             height: 25,
           ),
@@ -93,16 +91,16 @@ class NotificationScreen extends StatelessWidget {
                   size: 15,
                   color: Colors.red[800],
                 ),
-                Text(
+                const Text(
                   '  Sample collected successfully',
                   style: TextStyle(fontSize: 18),
                 ),
               ],
             ),
           ),
-          Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Divider(),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text(
               'Previous',
               style: TextStyle(fontSize: 30, color: Colors.black38),
@@ -111,7 +109,7 @@ class NotificationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.circle,
                   size: 15,
@@ -122,10 +120,10 @@ class NotificationScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

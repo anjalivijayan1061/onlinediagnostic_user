@@ -11,13 +11,13 @@ class NewScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         title: Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.arrow_back,
               color: Colors.black26,
             ),
             Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(15.0),
               child: Text(
                 "New Screen",
                 style: TextStyle(
@@ -34,8 +34,8 @@ class NewScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
+          children: const [
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: TextField(
                 decoration: InputDecoration(

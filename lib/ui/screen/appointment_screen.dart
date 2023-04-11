@@ -19,13 +19,13 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       appBar: AppBar(
         elevation: 1,
         title: Row(
-          children: [
-            const Icon(
+          children: const [
+            Icon(
               Icons.arrow_back,
               color: Colors.black26,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 "Appointment",
                 style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_icon_button.dart';
 
 class SuggestionCard extends StatelessWidget {
   const SuggestionCard({
@@ -32,23 +33,21 @@ class SuggestionCard extends StatelessWidget {
                         color: Colors.black,
                       ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => CustomAlertDialog(
-                        title: 'Are you sure',
-                        message:
-                            'Are you sure you want to delete this complaint? This action cannot be undone',
-                        primaryButtonLabel: 'Delete',
-                        primaryOnPressed: () {},
-                      ),
-                    );
-                  },
-                  child: const Icon(
-                    Icons.delete_forever_outlined,
-                    color: Colors.red,
+                CustomIconButton(
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => CustomAlertDialog(
+                      title: 'Are you sure',
+                      message:
+                          'Are you sure you want to delete this complaint? This action cannot be undone',
+                      primaryButtonLabel: 'Delete',
+                      primaryOnPressed: () {},
+                      secondaryButtonLabel: 'Cancel',
+                      secondaryOnPressed: () => Navigator.pop(context),
+                    ),
                   ),
+                  icon: Icons.delete_forever_outlined,
+                  iconColor: Colors.red,
                 ),
               ],
             ),

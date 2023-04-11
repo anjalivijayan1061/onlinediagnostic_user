@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class VerifyotpScreen extends StatelessWidget {
   const VerifyotpScreen({super.key});
@@ -25,41 +23,41 @@ class VerifyotpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Verify OTP',
                   style: TextStyle(fontSize: 30),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   'Enter your phone number to continue ',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 20),
                 ),
-                ElevatedButton(
+                const ElevatedButton(
                   onPressed: null,
-                  child: const Text('                   '),
+                  child: Text('                   '),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(
-                    child: const Text('Continue'),
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue[400],
                       //onPrimary: Colors.black,
                     ),
+                    child: const Text('Continue'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 28,
                 ),
-                Text(
+                const Text(
                   'By signing in you agree to our terms  and conditions and privacy policy',
                   style: TextStyle(fontSize: 15),
                 ),

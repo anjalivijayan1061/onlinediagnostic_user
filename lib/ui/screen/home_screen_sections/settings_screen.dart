@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/about_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/complaints_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/suggestion_screen.dart';
@@ -20,7 +19,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,23 +36,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProfileScreen(),
-                ),
-              );
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Divider(),
-          ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notification'),
-            trailing: const Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationScreen(),
                 ),
               );
             },
@@ -104,6 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const Divider(),
           CustomButton(
+            iconData: Icons.exit_to_app_outlined,
             label: signOut ? 'Signingout...' : 'Signout',
             onPressed: () async {
               signOut = true;

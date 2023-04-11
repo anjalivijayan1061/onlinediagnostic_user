@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/members_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/report_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/settings_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/test_screen.dart';
+import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,6 +22,22 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
+    Future.delayed(
+      const Duration(
+        milliseconds: 100,
+      ),
+      () {
+        if (Supabase.instance.client.auth.currentUser == null) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const SigninScreen(),
+            ),
+            (route) => true,
+          );
+        }
+      },
+    );
+
     tabController = TabController(
       length: 4,
       vsync: this,
@@ -32,13 +51,31 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 1,
-        title: const Text(
+        centerTitle: false,
+        title: Text(
           "Online Diagnostic",
-          style: TextStyle(
-            color: Colors.blue,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationScreen(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.notifications_active_outlined,
+              color: Colors.blueAccent,
+            ),
+          ),
+        ],
       ),
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
