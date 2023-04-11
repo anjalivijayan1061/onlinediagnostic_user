@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/home_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/signin_screen.dart';
+import 'package:onlinediagnostic_user/ui/widget/branding.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,22 +59,22 @@ class _SplashScreenState extends State<SplashScreen> {
               width: MediaQuery.of(context).size.width,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Center(
-                child: Icon(
-                  Icons.ac_unit,
-                  color: Colors.white,
-                  size: 100,
-                ),
-              ),
-              Text(
-                "Online DIagnostic",
-                style: TextStyle(fontSize: 25, color: Colors.white),
-              ),
-            ],
-          ),
+          Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Branding(),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                    backgroundColor: Colors.blue,
+                  ),
+                ],
+              )),
         ],
       ),
     );

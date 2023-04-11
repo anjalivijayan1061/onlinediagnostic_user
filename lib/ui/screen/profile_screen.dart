@@ -42,11 +42,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: Colors.black,
           ),
         ),
-        title: const Text(
+        title: Text(
           "Profile",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Colors.black,
+              ),
         ),
         backgroundColor: Colors.white,
       ),

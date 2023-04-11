@@ -63,9 +63,9 @@ class _MembercreationScreenState extends State<MembercreationScreen> {
         ),
         title: Text(
           widget.patientDetails != null ? 'Edit Member' : 'Add Member',
-          style: const TextStyle(
-            color: Colors.black,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Colors.black,
+              ),
         ),
         backgroundColor: Colors.white,
       ),

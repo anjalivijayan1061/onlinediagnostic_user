@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:onlinediagnostic_user/blocs/suggestion/suggestion_bloc.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_icon_button.dart';
+import 'package:onlinediagnostic_user/util/get_date.dart';
 
 class SuggestionCard extends StatelessWidget {
+  final Map<String, dynamic> suggestionDetails;
+  final SuggestionBloc suggestionBloc;
   const SuggestionCard({
     super.key,
+    required this.suggestionDetails,
+    required this.suggestionBloc,
   });
 
   @override
@@ -28,7 +34,7 @@ class SuggestionCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "12/12/2022",
+                  getDate(DateTime.parse(suggestionDetails['created_at'])),
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                         color: Colors.black,
                       ),
@@ -41,7 +47,15 @@ class SuggestionCard extends StatelessWidget {
                       message:
                           'Are you sure you want to delete this complaint? This action cannot be undone',
                       primaryButtonLabel: 'Delete',
-                      primaryOnPressed: () {},
+                      primaryOnPressed: () {
+                        suggestionBloc.add(
+                          DeleteSuggestionEvent(
+                            suggestionId: suggestionDetails['id'],
+                          ),
+                        );
+
+                        Navigator.pop(context);
+                      },
                       secondaryButtonLabel: 'Cancel',
                       secondaryOnPressed: () => Navigator.pop(context),
                     ),
@@ -55,7 +69,7 @@ class SuggestionCard extends StatelessWidget {
               color: Colors.black38,
             ),
             Text(
-              "daflsdglsdgksdgiosdgnsdgsdgiogdn\nasjasfoasfjasfoafs",
+              suggestionDetails['suggestion'],
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Colors.black,
                   ),

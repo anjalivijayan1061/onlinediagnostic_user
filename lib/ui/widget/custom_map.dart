@@ -11,7 +11,7 @@ class CustomMap extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 5,
+        elevation: 1,
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
