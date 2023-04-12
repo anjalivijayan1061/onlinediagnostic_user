@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/members_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
-import 'package:onlinediagnostic_user/ui/screen/profile_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/report_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/settings_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/test_screen.dart';

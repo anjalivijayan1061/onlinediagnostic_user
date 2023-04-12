@@ -21,13 +21,14 @@ class MyApp extends StatelessWidget {
       title: 'Online Diagnostic',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          inputDecorationTheme: const InputDecorationTheme(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.zero,
-              borderSide: BorderSide(color: Colors.black12),
-            ),
-          )),
+        primarySwatch: Colors.blue,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.zero,
+            borderSide: BorderSide(color: Colors.black12),
+          ),
+        ),
+      ),
       home: const SplashScreen(),
     );
   }

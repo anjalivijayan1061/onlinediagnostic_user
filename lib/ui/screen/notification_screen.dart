@@ -18,12 +18,11 @@ class NotificationScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: const Text(
-          "Notifications",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-          textAlign: TextAlign.left,
+        title: Text(
+          'Notifications',
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Colors.black,
+              ),
         ),
         backgroundColor: Colors.white,
       ),

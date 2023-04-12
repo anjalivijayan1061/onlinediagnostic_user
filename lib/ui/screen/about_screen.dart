@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -20,11 +18,11 @@ class AboutScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: const Text(
-          "About",
-          style: TextStyle(
-            color: Colors.black,
-          ),
+        title: Text(
+          'About',
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Colors.black,
+              ),
         ),
         backgroundColor: Colors.white,
       ),
