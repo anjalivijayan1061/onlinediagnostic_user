@@ -89,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen>
           controller: tabController,
           children: const [
             TestScreen(),
-            MembersScreen(),
             ReportScreen(),
+            MembersScreen(),
             SettingsScreen(),
           ],
         ),
@@ -132,18 +132,18 @@ class _HomeScreenState extends State<HomeScreen>
                   },
                 ),
                 NavBarItem(
-                  icon: Icons.group,
+                  icon: Icons.summarize,
                   isSelected: tabController!.index == 1,
                   onTap: () {
+                    ordersBloc.add(GetOrdersEvent(status: 'complete'));
                     tabController!.animateTo(1);
                     setState(() {});
                   },
                 ),
                 NavBarItem(
-                  icon: Icons.summarize,
+                  icon: Icons.group,
                   isSelected: tabController!.index == 2,
                   onTap: () {
-                    ordersBloc.add(GetOrdersEvent());
                     tabController!.animateTo(2);
                     setState(() {});
                   },

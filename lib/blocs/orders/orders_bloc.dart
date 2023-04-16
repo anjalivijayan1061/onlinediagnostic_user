@@ -50,6 +50,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
 
             data['prescription_document'] =
                 supabaseClient.storage.from('docs').getPublicUrl(path);
+            data['can_pay'] = false;
           }
 
           Map<String, dynamic> order =

@@ -17,7 +17,7 @@ class LabelWithText extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall!.copyWith(
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
                 color: Colors.black54,
                 fontWeight: FontWeight.w500,
               ),
@@ -27,7 +27,7 @@ class LabelWithText extends StatelessWidget {
         ),
         Text(
           text,
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
               ),
