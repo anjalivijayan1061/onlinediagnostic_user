@@ -17,7 +17,7 @@ class CustomMap extends StatelessWidget {
           children: [
             Text(
               'Map View',
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
                   ),

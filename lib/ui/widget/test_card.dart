@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class TestCard extends StatelessWidget {
-  final bool isPaid;
-  final String date, status;
+class TestBookingCard extends StatelessWidget {
+  final Map<String, dynamic> testBookingDetails;
 
-  const TestCard({
+  const TestBookingCard({
     Key? key,
-    required this.date,
-    required this.status,
-    this.isPaid = false,
+    required this.testBookingDetails,
   }) : super(key: key);
 
   @override
@@ -32,12 +31,14 @@ class TestCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    date,
+                    DateFormat('dd/MM/yyyy').format(
+                        DateTime.parse(testBookingDetails['created_at'])),
                   ),
                   Text(
-                    status,
-                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                          color: status.toLowerCase() == 'accepted'
+                    testBookingDetails['status'],
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: testBookingDetails['status'].toLowerCase() ==
+                                  'accepted'
                               ? Colors.green
                               : Colors.black,
                           fontWeight: FontWeight.bold,
@@ -45,44 +46,34 @@ class TestCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Test 1',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15),
+              const Divider(
+                height: 20,
+              ),
+              ...List<Widget>.generate(
+                testBookingDetails['test_booking_items'].length,
+                (index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    testBookingDetails['test_booking_items'][index]['test']
+                        ['name'],
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 15),
+                  ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Test 2',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Test 3',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  '3 more test ',
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15),
-                ),
-              ),
-              isPaid
+              testBookingDetails['test_booking_items'].length > 3
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '${testBookingDetails['test_booking_items'].length - 3} more test ',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                    )
+                  : const SizedBox(),
+              testBookingDetails['payment_status'] == 'paid'
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text('Total-550',
@@ -94,30 +85,40 @@ class TestCard extends StatelessWidget {
                   : const SizedBox(),
               const Divider(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment:
+                    testBookingDetails['prescription_document'] != null
+                        ? MainAxisAlignment.spaceBetween
+                        : MainAxisAlignment.end,
                 children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.document_scanner,
-                          color: Colors.blue[400],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'View Document',
-                          style:
-                              Theme.of(context).textTheme.subtitle1!.copyWith(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  testBookingDetails['prescription_document'] != null
+                      ? GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse(
+                                testBookingDetails['prescription_document']));
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.document_scanner,
+                                color: Colors.blue[400],
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'View Document',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1!
+                                    .copyWith(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const SizedBox(),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(

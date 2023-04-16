@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onlinediagnostic_user/blocs/orders/orders_bloc.dart';
 import 'package:onlinediagnostic_user/ui/screen/home_screen_sections/members_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/newtest_screen.dart';
 import 'package:onlinediagnostic_user/ui/screen/notification_screen.dart';
@@ -18,6 +20,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController? tabController;
+
+  final OrdersBloc ordersBloc = OrdersBloc();
 
   @override
   void initState() {
@@ -42,107 +46,118 @@ class _HomeScreenState extends State<HomeScreen>
       vsync: this,
     );
     super.initState();
+    ordersBloc.add(GetOrdersEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 1,
-        centerTitle: false,
-        title: Text(
-          "Online Diagnostic",
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Colors.black87,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
+    return BlocProvider<OrdersBloc>.value(
+      value: ordersBloc,
+      child: Scaffold(
         backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationScreen(),
+        appBar: AppBar(
+          elevation: 1,
+          automaticallyImplyLeading: false,
+          centerTitle: false,
+          title: Text(
+            "Online Diagnostic",
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
-            icon: const Icon(
-              Icons.notifications_active_outlined,
-              color: Colors.blueAccent,
-            ),
           ),
-        ],
-      ),
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: const [
-          TestScreen(),
-          MembersScreen(),
-          ReportScreen(),
-          SettingsScreen(),
-        ],
-      ),
-      floatingActionButton: tabController!.index == 0
-          ? FloatingActionButton(
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 25,
-              ),
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const NewtestScreen(),
+                    builder: (context) => const NotificationScreen(),
                   ),
                 );
               },
-            )
-          : const SizedBox(),
-      bottomNavigationBar: Material(
-        color: const Color(0xFFBFE4F9),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              NavBarItem(
-                icon: Icons.home,
-                isSelected: tabController!.index == 0,
-                onTap: () {
-                  tabController!.animateTo(0);
-                  setState(() {});
-                },
+              icon: const Icon(
+                Icons.notifications_active_outlined,
+                color: Colors.blueAccent,
               ),
-              NavBarItem(
-                icon: Icons.group,
-                isSelected: tabController!.index == 1,
-                onTap: () {
-                  tabController!.animateTo(1);
-                  setState(() {});
+            ),
+          ],
+        ),
+        body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: tabController,
+          children: const [
+            TestScreen(),
+            MembersScreen(),
+            ReportScreen(),
+            SettingsScreen(),
+          ],
+        ),
+        floatingActionButton: tabController!.index == 0
+            ? FloatingActionButton(
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 25,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider<OrdersBloc>.value(
+                        value: ordersBloc,
+                        child: const NewtestScreen(),
+                      ),
+                    ),
+                  );
                 },
-              ),
-              NavBarItem(
-                icon: Icons.summarize,
-                isSelected: tabController!.index == 2,
-                onTap: () {
-                  tabController!.animateTo(2);
-                  setState(() {});
-                },
-              ),
-              NavBarItem(
-                icon: Icons.settings,
-                isSelected: tabController!.index == 3,
-                onTap: () {
-                  tabController!.animateTo(3);
-                  setState(() {});
-                },
-              ),
-            ],
+              )
+            : const SizedBox(),
+        bottomNavigationBar: Material(
+          color: Colors.white,
+          elevation: 5,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                NavBarItem(
+                  icon: Icons.home,
+                  isSelected: tabController!.index == 0,
+                  onTap: () {
+                    ordersBloc.add(GetOrdersEvent());
+                    tabController!.animateTo(0);
+                    setState(() {});
+                  },
+                ),
+                NavBarItem(
+                  icon: Icons.group,
+                  isSelected: tabController!.index == 1,
+                  onTap: () {
+                    tabController!.animateTo(1);
+                    setState(() {});
+                  },
+                ),
+                NavBarItem(
+                  icon: Icons.summarize,
+                  isSelected: tabController!.index == 2,
+                  onTap: () {
+                    ordersBloc.add(GetOrdersEvent());
+                    tabController!.animateTo(2);
+                    setState(() {});
+                  },
+                ),
+                NavBarItem(
+                  icon: Icons.settings,
+                  isSelected: tabController!.index == 3,
+                  onTap: () {
+                    tabController!.animateTo(3);
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -167,8 +182,8 @@ class NavBarItem extends StatelessWidget {
       onTap: onTap,
       child: Icon(
         icon,
-        color: isSelected ? const Color(0xFF3E89B2) : Colors.black,
-        size: 35,
+        color: isSelected ? Colors.blue : Colors.black,
+        size: 25,
       ),
     );
   }

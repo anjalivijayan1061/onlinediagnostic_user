@@ -6,21 +6,13 @@ class ReportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: TestCard(
-              date: '12/03/2022',
-              status: 'Completed',
-              isPaid: false,
-            ),
-          ),
-        ],
-      ),
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      children: const [
+        TestBookingCard(
+          testBookingDetails: {},
+        ),
+      ],
     );
   }
 }
