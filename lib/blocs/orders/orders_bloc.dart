@@ -71,6 +71,12 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           }
 
           add(GetOrdersEvent());
+        } else if (event is PaymentOrderEvent) {
+          await queryTable.update({
+            'payment_status': 'paid',
+            'payment_id': event.paymentId,
+          }).eq('id', event.orderId);
+          add(GetOrdersEvent());
         } else if (event is DeleteOrderEvent) {
           await queryTable.delete().eq('id', event.orderId);
           add(GetOrdersEvent());

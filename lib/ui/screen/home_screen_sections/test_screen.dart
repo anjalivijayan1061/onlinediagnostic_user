@@ -50,6 +50,11 @@ class _TestScreenState extends State<TestScreen> {
                             shrinkWrap: true,
                             itemBuilder: (context, index) => TestBookingCard(
                               testBookingDetails: state.orders[index],
+                              ordersBloc: BlocProvider.of<OrdersBloc>(context),
+                              onBack: () {
+                                BlocProvider.of<OrdersBloc>(context)
+                                    .add(GetOrdersEvent());
+                              },
                             ),
                             itemCount: state.orders.length,
                             separatorBuilder: (context, index) =>

@@ -51,6 +51,11 @@ class _ReportScreenState extends State<ReportScreen> {
                             shrinkWrap: true,
                             itemBuilder: (context, index) => TestBookingCard(
                               testBookingDetails: state.orders[index],
+                              ordersBloc: BlocProvider.of<OrdersBloc>(context),
+                              onBack: () {
+                                BlocProvider.of<OrdersBloc>(context)
+                                    .add(GetOrdersEvent(status: 'complete'));
+                              },
                             ),
                             itemCount: state.orders.length,
                             separatorBuilder: (context, index) =>

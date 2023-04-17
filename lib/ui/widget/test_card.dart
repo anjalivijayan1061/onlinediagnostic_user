@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:onlinediagnostic_user/blocs/orders/orders_bloc.dart';
 import 'package:onlinediagnostic_user/ui/screen/test_details_screen.dart';
 import 'package:onlinediagnostic_user/ui/widget/label_with_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TestBookingCard extends StatelessWidget {
   final Map<String, dynamic> testBookingDetails;
+  final OrdersBloc ordersBloc;
+  final Function() onBack;
 
   const TestBookingCard({
     Key? key,
     required this.testBookingDetails,
+    required this.onBack,
+    required this.ordersBloc,
   }) : super(key: key);
 
   @override
@@ -129,14 +134,20 @@ class TestBookingCard extends StatelessWidget {
                       ),
                     )
                   : const SizedBox(),
-              testBookingDetails['payment_status'] == 'paid'
+              testBookingDetails['payment_status'] != 'paid'
                   ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Total-550',
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.red[600])),
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                              '₹${testBookingDetails['total_price']} Payment Pending',
+                              textAlign: TextAlign.end,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 15, color: Colors.red[600])),
+                        ],
+                      ),
                     )
                   : const SizedBox(),
               const Divider(),
@@ -179,14 +190,16 @@ class TestBookingCard extends StatelessWidget {
                           )
                         : const SizedBox(),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
+                      onPressed: () async {
+                        await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => TestDetailsScreen(
                               testDetails: testBookingDetails,
+                              ordersBloc: ordersBloc,
                             ),
                           ),
                         );
+                        onBack();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue[400],

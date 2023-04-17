@@ -30,3 +30,13 @@ class DeleteOrderEvent extends OrdersEvent {
 
   DeleteOrderEvent({required this.orderId});
 }
+
+class PaymentOrderEvent extends OrdersEvent {
+  final int orderId;
+  final String paymentId;
+
+  PaymentOrderEvent({
+    required this.orderId,
+    required this.paymentId,
+  });
+}

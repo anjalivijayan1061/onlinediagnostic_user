@@ -1,19 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
+import 'package:onlinediagnostic_user/blocs/orders/orders_bloc.dart';
+import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/label_with_text.dart';
+import 'package:onlinediagnostic_user/util/create_order.dart';
 import 'package:onlinediagnostic_user/util/get_age.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TestDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> testDetails;
-  const TestDetailsScreen({super.key, required this.testDetails});
+  final OrdersBloc ordersBloc;
+  const TestDetailsScreen(
+      {super.key, required this.testDetails, required this.ordersBloc});
 
   @override
   State<TestDetailsScreen> createState() => _TestDetailsScreenState();
 }
 
 class _TestDetailsScreenState extends State<TestDetailsScreen> {
+  final Razorpay _razorpay = Razorpay();
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    await showDialog(
+      context: context,
+      builder: (context) => const CustomAlertDialog(
+        title: 'Payment Success',
+        message: 'Thank you for the payment. Reopen the page to see changes',
+        primaryButtonLabel: 'Ok',
+      ),
+    );
+
+    widget.ordersBloc.add(
+      PaymentOrderEvent(
+        orderId: widget.testDetails['id'],
+        paymentId: response.paymentId ?? '',
+      ),
+    );
+
+    Navigator.of(context).pop();
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Logger().e(response.error);
+    showDialog(
+      context: context,
+      builder: (context) => CustomAlertDialog(
+        title: 'Payment Failed',
+        message: response.message ?? 'Something went wrong, Please try again',
+        primaryButtonLabel: 'Ok',
+      ),
+    );
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet was selected
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  void makePayment() async {
+    // String orderId = await createOrder(widget.testDetails['total_price']);
+
+    var options = {
+      'key': 'rzp_test_j07YpjyCexi5xr',
+      'amount': widget.testDetails['total_price'] * 100,
+      'name': 'Online Diagnostics',
+      // 'order_id': orderId,
+      'description': '#${widget.testDetails['id']}',
+      'prefill': {
+        'contact': '7012874004',
+        'email': Supabase.instance.client.auth.currentUser!.email,
+      }
+    };
+    Logger().w(options);
+    _razorpay.open(options);
+  }
+
+  @override
+  void dispose() {
+    _razorpay.clear(); // Removes all listeners
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,14 +158,25 @@ class _TestDetailsScreenState extends State<TestDetailsScreen> {
                       text: '₹${widget.testDetails['total_price'].toString()}',
                     ),
                   ),
-                  widget.testDetails['can_pay'] &&
-                          widget.testDetails['payment_status'] == 'pending'
-                      ? TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Make Payment',
-                          ),
-                        )
+                  widget.testDetails['can_pay']
+                      ? widget.testDetails['payment_status'] == 'pending'
+                          ? TextButton(
+                              onPressed: () {
+                                makePayment();
+                              },
+                              child: const Text(
+                                'Make Payment',
+                              ),
+                            )
+                          : Text(
+                              'Paid',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
+                                    color: Colors.green,
+                                  ),
+                            )
                       : const SizedBox(),
                 ],
               ),
