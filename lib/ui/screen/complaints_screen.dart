@@ -46,29 +46,6 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                 ),
           ),
           backgroundColor: Colors.white,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 20,
-              ),
-              child: IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => BlocProvider<ComplaintBloc>.value(
-                      value: complaintBloc,
-                      child: const AddComplaintDialog(),
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.add,
-                  size: 30,
-                  color: Colors.black87,
-                ),
-              ),
-            ),
-          ],
         ),
         body: SafeArea(
           child: BlocConsumer<ComplaintBloc, ComplaintState>(

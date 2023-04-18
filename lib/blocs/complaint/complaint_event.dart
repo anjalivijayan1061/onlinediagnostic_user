@@ -5,11 +5,11 @@ abstract class ComplaintEvent {}
 
 class AddComplaintEvent extends ComplaintEvent {
   final String complaint;
-  final int testId;
+  final int testBookingId;
 
   AddComplaintEvent({
     required this.complaint,
-    required this.testId,
+    required this.testBookingId,
   });
 }
 

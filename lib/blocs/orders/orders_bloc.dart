@@ -21,15 +21,29 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           List<dynamic> tempOrders = await supabaseClient.rpc(
             'get_test_bookings',
             params: {
-              'search_status': event.status,
+              // 'search_status': event.status,
               'search_user_id': supabaseClient.auth.currentUser!.id,
               'search_patient_id': event.patientId,
             },
           );
 
-          List<Map<String, dynamic>> orders =
+          List<Map<String, dynamic>> searchableOrders =
               tempOrders.map((e) => e as Map<String, dynamic>).toList();
 
+          List<Map<String, dynamic>> orders = [];
+
+          for (int i = 0; i < searchableOrders.length; i++) {
+            if (event.status == 'pending') {
+              if (searchableOrders[i]['status'] == 'pending' ||
+                  searchableOrders[i]['status'] == 'collected') {
+                orders.add(searchableOrders[i]);
+              }
+            } else {
+              if (searchableOrders[i]['status'] == 'complete') {
+                orders.add(searchableOrders[i]);
+              }
+            }
+          }
           Logger().w(orders);
 
           emit(OrdersSuccessState(orders: orders));

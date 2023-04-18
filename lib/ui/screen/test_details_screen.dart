@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
+import 'package:onlinediagnostic_user/blocs/complaint/complaint_bloc.dart';
 import 'package:onlinediagnostic_user/blocs/orders/orders_bloc.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/label_with_text.dart';
@@ -11,6 +12,8 @@ import 'package:onlinediagnostic_user/util/get_age.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widget/complaints/add_complaint_dialog.dart';
 
 class TestDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> testDetails;
@@ -117,7 +120,24 @@ class _TestDetailsScreenState extends State<TestDetailsScreen> {
                   ),
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 10),
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => BlocProvider<ComplaintBloc>.value(
+                  value: ComplaintBloc(),
+                  child: AddComplaintDialog(
+                    testBookingId: widget.testDetails['id'],
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.report_outlined,
+              color: Colors.red,
+            ),
+          ),
         ],
       ),
       body: SafeArea(

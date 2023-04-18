@@ -6,8 +6,10 @@ import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 import 'package:onlinediagnostic_user/ui/widget/test_selector.dart';
 
 class AddComplaintDialog extends StatefulWidget {
+  final int testBookingId;
   const AddComplaintDialog({
     super.key,
+    required this.testBookingId,
   });
 
   @override
@@ -17,7 +19,6 @@ class AddComplaintDialog extends StatefulWidget {
 class _AddComplaintDialogState extends State<AddComplaintDialog> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController complaintController = TextEditingController();
-  int? testId;
 
   @override
   Widget build(BuildContext context) {
@@ -64,25 +65,8 @@ class _AddComplaintDialogState extends State<AddComplaintDialog> {
               const SizedBox(
                 height: 10,
               ),
-              TestSelector(
-                onSelect: (id) {
-                  testId = id;
-                  setState(() {});
-                },
-              ),
               const SizedBox(
                 height: 10,
-              ),
-              testId != null
-                  ? const SizedBox()
-                  : Text(
-                      'Please select test to continue !',
-                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                            color: Colors.red[700],
-                          ),
-                    ),
-              SizedBox(
-                height: testId != null ? 0 : 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,16 +85,14 @@ class _AddComplaintDialogState extends State<AddComplaintDialog> {
                       label: 'Send',
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          if (testId != null) {
-                            BlocProvider.of<ComplaintBloc>(context).add(
-                              AddComplaintEvent(
-                                complaint: complaintController.text.trim(),
-                                testId: testId!,
-                              ),
-                            );
+                          BlocProvider.of<ComplaintBloc>(context).add(
+                            AddComplaintEvent(
+                              complaint: complaintController.text.trim(),
+                              testBookingId: widget.testBookingId,
+                            ),
+                          );
 
-                            Navigator.pop(context);
-                          }
+                          Navigator.pop(context);
                         }
                       },
                       filled: true,

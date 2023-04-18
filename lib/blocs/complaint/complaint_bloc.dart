@@ -29,10 +29,14 @@ class ComplaintBloc extends Bloc<ComplaintEvent, ComplaintState> {
           Map<String, dynamic> complaintWithTestMap = {};
 
           for (Map<String, dynamic> complaint in complaints) {
-            Map<String, dynamic> test = await subQueryTable
-                .select()
-                .eq('id', complaint['test_id'])
-                .single();
+            List<dynamic> tempTest = await supabaseClient.rpc(
+              'get_test_bookings',
+              params: {
+                'search_test_booking_id': complaint['test_booking_id'],
+              },
+            );
+
+            Map<String, dynamic> test = tempTest.first as Map<String, dynamic>;
 
             complaintWithTestMap = {
               'complaint': complaint,
@@ -50,7 +54,7 @@ class ComplaintBloc extends Bloc<ComplaintEvent, ComplaintState> {
           await queryTable.insert(
             {
               'user_id': supabaseClient.auth.currentUser!.id,
-              'test_id': event.testId,
+              'test_booking_id': event.testBookingId,
               'complaint': event.complaint,
             },
           );

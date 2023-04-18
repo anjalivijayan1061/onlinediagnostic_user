@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlinediagnostic_user/blocs/complaint/complaint_bloc.dart';
+import 'package:onlinediagnostic_user/blocs/orders/orders_bloc.dart';
+import 'package:onlinediagnostic_user/ui/screen/test_details_screen.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_alert_dialog.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_button.dart';
 import 'package:onlinediagnostic_user/ui/widget/custom_icon_button.dart';
@@ -88,94 +90,9 @@ class ComplaintCard extends StatelessWidget {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
-                  builder: (context) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 20,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          complaintDetails['test']['name'],
-                          style:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: Colors.black,
-                                  ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: LabelWithText(
-                                label: 'Price',
-                                text:
-                                    '₹ ${complaintDetails['test']['price'].toString()}',
-                              ),
-                            ),
-                            Expanded(
-                              child: LabelWithText(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                label: 'Duration',
-                                text:
-                                    '${complaintDetails['test']['duration'].toString()} Hour',
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        LabelWithText(
-                          label: 'Sample Type',
-                          text: complaintDetails['test']['sample_type'],
-                        ),
-                        const Divider(),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Center(
-                          child: RichText(
-                            text: TextSpan(
-                              text: 'Can collect sample from home : ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge!
-                                  .copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              children: [
-                                TextSpan(
-                                  text: complaintDetails['test']
-                                          ['sample_from_home']
-                                      ? 'Yes'
-                                      : 'No',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge!
-                                      .copyWith(
-                                        color: complaintDetails['test']
-                                                ['sample_from_home']
-                                            ? Colors.green[700]
-                                            : Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  builder: (context) => TestDetailsScreen(
+                    testDetails: complaintDetails['test'],
+                    ordersBloc: OrdersBloc(),
                   ),
                 );
               },

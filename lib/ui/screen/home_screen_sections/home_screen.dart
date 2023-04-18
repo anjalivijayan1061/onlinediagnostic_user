@@ -67,22 +67,22 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
           ),
           backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.notifications_active_outlined,
-                color: Colors.blueAccent,
-              ),
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => const NotificationScreen(),
+          //         ),
+          //       );
+          //     },
+          //     icon: const Icon(
+          //       Icons.notifications_active_outlined,
+          //       color: Colors.blueAccent,
+          //     ),
+          //   ),
+          // ],
         ),
         body: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
