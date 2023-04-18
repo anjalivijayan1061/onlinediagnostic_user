@@ -91,7 +91,7 @@ class _ComplaintsScreenState extends State<ComplaintsScreen> {
                                       )
                                     : const Center(
                                         child: Text(
-                                          'No complaints found!\nClick on + button on the appbar to send a complaint',
+                                          'No complaints found!',
                                           textAlign: TextAlign.center,
                                         ),
                                       )
